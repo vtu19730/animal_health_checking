@@ -1,0 +1,35 @@
+body {  
+    font-family: arial;  
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5)50%,rgba(0, 0, 0, 0.5)50%), url(img/4.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    font-size: 20px;
+    font-family: Arial;
+    margin-left: 62px;
+    margin-top: 27px;
+    } 
+    legend {
+    color: white;
+    }
+    label {
+    color: white;
+    }
+    h1 {
+    background-color: none; 
+    color: #ff7200;
+    }
+
+    .dropdown {
+        display: inline-block;
+        position: relative;
+      }
+      .dropdown-options {
+        display: none;
+        position: absolute;
+        overflow: auto;
+      }
+      .dropdown:hover .dropdown-options {
+        display: block;
+      }

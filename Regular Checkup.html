@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regular Checkup Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        #animalDetails {
+            margin-top: 20px;
+            text-align: left;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        #medicationBtn {
+            display: none;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #medicationBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Regular Health Checkup</h1>
+        <div id="animalDetails">
+            <label for="animalId">Animal ID:</label>
+            <input type="text" id="animalId">
+            <button onclick="generateHealthCheckup()">Check Up</button>
+            <div id="details"></div>
+        </div>
+        <div id="result"></div>
+        <button id="medicationBtn" onclick="checkMedicationUrgency()">Medication Urgency</button>
+    </div>
+
+    <script>
+        function generateHealthCheckup() {
+            var animalId = document.getElementById('animalId').value;
+
+            var age = Math.floor(Math.random() * 20) + 1; // Random age between 1 and 20 years
+            var weight = Math.floor(Math.random() * 593) + 8; // Random weight between 8 and 600 kg
+
+            var symptoms = ['fever', 'cough', 'rash', 'vomiting', 'diarrhoea'];
+            var healthStatus = ['yes', 'no'];
+
+            var healthDetails = "<h3>Health Checkup for Animal ID: " + animalId + "</h3>";
+            healthDetails += "<p>Age: " + age + " years</p>";
+            healthDetails += "<p>Weight: " + weight + " kg</p>";
+
+            healthDetails += "<p>Symptoms:</p>";
+            healthDetails += "<ul>";
+            symptoms.forEach(function (symptom) {
+                var status = healthStatus[Math.floor(Math.random() * 2)]; // Random status - yes or no
+                healthDetails += "<li id='" + symptom + "'>" + symptom + ": " + status + "</li>";
+            });
+            healthDetails += "</ul>";
+
+            document.getElementById('details').innerHTML = healthDetails;
+
+            document.getElementById('medicationBtn').style.display = 'block'; // Display the medication button
+        }
+
+        function checkMedicationUrgency() {
+            var symptoms = ['fever', 'cough', 'rash', 'vomiting', 'diarrhoea'];
+
+            var allSymptomsNo = symptoms.every(function (symptom) {
+                return document.getElementById(symptom).innerText.includes('no');
+            });
+
+            var allSymptomsYes = symptoms.every(function (symptom) {
+                return document.getElementById(symptom).innerText.includes('yes');
+            });
+
+            var resultDiv = document.getElementById('result');
+            if (allSymptomsNo) {
+                resultDiv.innerHTML = "<p>Healthy! No need for medication visit.</p>";
+            } else if (allSymptomsYes) {
+                resultDiv.innerHTML = "<p>Serious! Visit the hospital immediately.</p>";
+            } else {
+                resultDiv.innerHTML = "<p>Sick! Need to come for a medication visit soon.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
